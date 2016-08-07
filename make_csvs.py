@@ -18,10 +18,10 @@ def make_csvs(source_dir='zips', target_dir='csvs', pool_size=cpu_count()):
 
     zip_filenames = glob(os.path.join(source_dir, '*.zip'))
 
-    try:
-        f1, roots = open_csv_writer(os.path.join(target_dir, 'roots.csv'))
-        f2, objects = open_csv_writer(os.path.join(target_dir, 'objects.csv'))
+    f1, roots = open_csv_writer(os.path.join(target_dir, 'roots.csv'))
+    f2, objects = open_csv_writer(os.path.join(target_dir, 'objects.csv'))
 
+    try:
         roots.writerow(('id', 'level'))
         objects.writerow(('id', 'object_name'))
 
