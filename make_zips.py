@@ -3,7 +3,8 @@ import os.path
 from zipfile import ZipFile
 from random import randint
 from uuid import uuid4
-from multiprocessing import Pool, cpu_count
+from multiprocessing import cpu_count
+from concurrent.futures import ProcessPoolExecutor
 
 from utils import joining, ensure_dir_exists, random_string
 
@@ -14,8 +15,8 @@ def make_all_zips(count=50, target_dir='zips', pool_size=cpu_count()):
         os.path.join(target_dir, '%d.zip' % index)
         for index in range(count)
     ]
-    with Pool(pool_size) as pool:
-        return pool.map(make_zip, filenames)
+    with ProcessPoolExecutor(pool_size) as executor:
+        return executor.map(make_zip, filenames)
 
 
 def make_zip(filename):

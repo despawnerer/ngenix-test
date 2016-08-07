@@ -3,7 +3,8 @@ import os.path
 from xml.etree import ElementTree
 from zipfile import ZipFile
 from collections import namedtuple
-from multiprocessing import Pool, cpu_count
+from multiprocessing import cpu_count
+from concurrent.futures import ProcessPoolExecutor
 from glob import glob
 
 from utils import ensure_dir_exists, iflatten, open_csv_writer
@@ -24,11 +25,8 @@ def make_csvs(source_dir='zips', target_dir='csvs', pool_size=cpu_count()):
         roots.writerow(('id', 'level'))
         objects.writerow(('id', 'object_name'))
 
-        with Pool(pool_size) as pool:
-            ngdata_per_zip = pool.imap_unordered(
-                extract_ngdata_from_zip,
-                zip_filenames,
-            )
+        with ProcessPoolExecutor(pool_size) as executor:
+            ngdata_per_zip = executor.map(extract_ngdata_from_zip, zip_filenames)
             for ngdata in iflatten(ngdata_per_zip):
                 roots.writerow((ngdata.id, ngdata.level))
                 for object_name in ngdata.object_names:
