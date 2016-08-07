@@ -12,7 +12,6 @@ NGData = namedtuple('NGData', 'id level object_names')
 
 
 def make_csvs(source_dir='zips', target_dir='csvs', pool_size=cpu_count()):
-    ensure_dir_exists(source_dir)
     ensure_dir_exists(target_dir)
 
     zip_filenames = glob(os.path.join(source_dir, '*.zip'))
