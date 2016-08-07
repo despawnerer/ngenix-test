@@ -2,12 +2,12 @@ import os.path
 from zipfile import ZipFile
 from random import randint
 from uuid import uuid4
-from multiprocessing import Pool
+from multiprocessing import Pool, cpu_count
 
 from utils import joining, ensure_dir_exists, random_string
 
 
-def make_all_zips(count=50, target_dir='zips', pool_size=5):
+def make_all_zips(count=50, target_dir='zips', pool_size=cpu_count()):
     ensure_dir_exists(target_dir)
     filenames = [
         os.path.join(target_dir, '%d.zip' % index)
