@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import os.path
 from zipfile import ZipFile
 from random import randint

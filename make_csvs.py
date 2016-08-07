@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import os.path
 from xml.etree import ElementTree
 from zipfile import ZipFile
