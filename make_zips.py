@@ -7,10 +7,10 @@ from multiprocessing import Pool
 from utils import joining, ensure_dir_exists, random_string
 
 
-def make_all_zips(count=50, container_dir='zips', pool_size=5):
-    ensure_dir_exists(container_dir)
+def make_all_zips(count=50, target_dir='zips', pool_size=5):
+    ensure_dir_exists(target_dir)
     filenames = [
-        os.path.join(container_dir, '%d.zip' % index)
+        os.path.join(target_dir, '%d.zip' % index)
         for index in range(count)
     ]
     with Pool(pool_size) as pool:
