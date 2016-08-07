@@ -11,7 +11,7 @@ Requirements
 Step 1: Create zip files
 ------------------------
 
-`zips` dir will be created and 50 zip files will be put in there named `0.zip` `1.zip` and so on.
+Create a `zips` dir and 50 zip files named `0.zip` `1.zip` and so on, with the required contents inside.
 
 	make zips
 
@@ -19,7 +19,7 @@ Step 1: Create zip files
 Step 2: Create CSV files
 ------------------------
 
-`csvs` dir will be created and two csv files inside it with data extracted from zip files created in step 1.
+Create a `csvs` dir with two csv files filled with data extracted from zip files that were created in step 1.
 
 	make csvs
 
